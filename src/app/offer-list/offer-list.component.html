@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">CaseForForceget</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/offer-add" routerLinkActive="active">Add Offer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/offer-list" routerLinkActive="active">Offer List</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container">
+    <h2 class="text-center mt-4 mb-4">Offer List Page</h2>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Movement Type</th>
+              <th>Incoterms</th>
+              <th>Countries-Cities</th>
+              <th>Package Type</th>
+              <th>Unit -1</th>
+              <th>Unit -2</th>
+              <th>Currency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let offer of offers">
+              <td>{{ offer.mode }}</td>
+              <td>{{ offer.movementType }}</td>
+              <td>{{ offer.incoterms }}</td>
+              <td>{{ offer.countriesCities }}</td>
+              <td>{{ offer.packageType }}</td>
+              <td>{{ offer.unit1 }}</td>
+              <td>{{ offer.unit2 }}</td>
+              <td>{{ offer.currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

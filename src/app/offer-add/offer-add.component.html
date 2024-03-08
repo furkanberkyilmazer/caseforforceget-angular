@@ -1,0 +1,140 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">CaseForForceget</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/offer-add" routerLinkActive="active">Add Offer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/offer-list" routerLinkActive="active">Offer List</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="container">
+    <h2 class="text-center mt-4 mb-4">Offer Page</h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form (ngSubmit)="submitOffer()">
+            <div class="form-group">
+                <label for="mode">Mode</label>
+                <select id="mode" name="mode"  [(ngModel)]="offerDto.mode" class="form-control">
+                    <option value="">Mode</option>
+                    <option value="LCL">LCL</option>
+                    <option value="FCL">FCL</option>
+                    <option value="Air">Air</option>
+                </select>
+                <span class="info-icon" title="Explanation for Mode">ℹ</span>
+                <div class="error-message">{{ errorMessage.mode }}</div>
+            </div>
+            <div class="form-group">
+                <label for="movementType">Movement Type</label>
+                <select id="movementType" name="movementType" [(ngModel)]="offerDto.movementType" class="form-control">
+                    <option value="">Movement Type</option>
+                    <option value="Door to Door">Door to Door</option>
+                    <option value="Port to Door">Port to Door</option>
+                    <option value="Door to Port">Door to Port</option>
+                    <option value="Port to Port">Port to Port</option>
+                </select>
+                <span class="info-icon" title="Explanation for Movement Type">ℹ</span>
+                <div class="error-message">{{ errorMessage.movementType }}</div>
+            </div>
+            <div class="form-group">
+                <label for="incoterms">Incoterms</label>
+                <select id="incoterms" name="incoterms" [(ngModel)]="offerDto.incoterms" class="form-control">
+                    <option value="">Incoterms</option>
+                    <option value="Delivered Duty Paid (DDP)">Delivered Duty Paid (DDP)</option>
+                    <option value="Delivered At Place (DAT)">Delivered At Place (DAT)</option>
+                </select>
+                <span class="info-icon" title="Explanation for Incoterms">ℹ</span>
+                <div class="error-message">{{ errorMessage.incoterms }}</div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="countriesCities">Countries-Cities</label>
+                <select id="countriesCities" name="countriesCities" [(ngModel)]="offer.countriesCities" class="form-control">
+                    <option value="">Countries-Cities</option>
+                    <option value="USA - New York">USA - New York</option>
+                    <option value="USA - Los Angeles">USA - Los Angeles</option>
+                    <option value="USA - Miami">USA - Miami</option>
+                    <option value="USA - Minnesota">USA - Minnesota</option>
+                    <option value="China - Beijing">China - Beijing</option>
+                    <option value="China - Shanghai">China - Shanghai</option>
+                    <option value="Turkey - Istanbul">Turkey - Istanbul</option>
+                    <option value="Turkey - Izmir">Turkey - Izmir</option>
+                </select>
+                <span class="info-icon" title="Explanation for Countries-Cities">ℹ</span>
+                <div class="error-message">{{ errorMessage.countriesCities }}</div>
+            </div> -->
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" [(ngModel)]="offerDto.country" (change)="onCountryChange($event)" class="form-control">
+                  <option value="" selected>Country</option>
+                  <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                </select>
+                <span class="info-icon" title="Explanation for Country">ℹ</span>
+                <div class="error-message">{{ errorMessage.country }}</div>
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <select id="city" name="city" [(ngModel)]="offerDto.city" class="form-control">
+                  <option value="" selected>City</option>
+                  <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                </select>
+                <span class="info-icon" title="Explanation for City">ℹ</span>
+                <div class="error-message">{{ errorMessage.city }}</div>
+              </div>
+            <div class="form-group">
+                <label for="packageType">Package Type</label>
+                <select id="packageType" name="packageType" [(ngModel)]="offerDto.packageType" class="form-control">
+                    <option value="">Package Type</option>
+                    <option value="Pallets">Pallets</option>
+                    <option value="Boxes">Boxes</option>
+                    <option value="Cartons">Cartons</option>
+                </select>
+                <span class="info-icon" title="Explanation for Package Type">ℹ</span>
+                <div class="error-message">{{ errorMessage.packageType }}</div>
+            </div>
+            <div class="form-group">
+                <label for="unit1">Unit -1</label>
+                <select id="unit1" name="unit1" [(ngModel)]="offerDto.unit1" class="form-control">
+                    <option value="">Unit -1</option>
+                    <option value="CM">CM</option>
+                    <option value="IN">IN</option>
+                </select>
+                <span class="info-icon" title="Explanation for Unit -1">ℹ</span>
+                <div class="error-message">{{ errorMessage.unit1 }}</div>
+            </div>
+            <div class="form-group">
+                <label for="unit2">Unit -2</label>
+                <select id="unit2" name="unit2" [(ngModel)]="offerDto.unit2" class="form-control">
+                    <option value="">Unit -2</option>
+                    <option value="KG">KG</option>
+                    <option value="LB">LB</option>
+                </select>
+                <span class="info-icon" title="Explanation for Unit -2">ℹ</span>
+                <div class="error-message">{{ errorMessage.unit2 }}</div>
+            </div>
+            <div class="form-group">
+                <label for="currency">Currency</label>
+                <select id="currency" name="currency" [(ngModel)]="offerDto.currency" class="form-control">
+                    <option value="">Currency</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="TRY">TRY - Turkish Lira</option>
+                </select>
+                <span class="info-icon" title="Explanation for Currency">ℹ</span>
+                <div class="error-message">{{ errorMessage.currency }}</div>
+            </div>
+            <button type="submit" class="btn btn-danger">Save</button>
+            <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+            <div *ngIf="errorMessageForRecord" class="alert alert-danger mt-3">{{ errorMessageForRecord }}</div>
+        </form>
+      </div>
+    </div>
+</div>
